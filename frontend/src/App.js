@@ -8,6 +8,7 @@ import { Endsem } from "./Pages/Endsem";
 import { Notes } from "./Pages/Notes";
 import { NotesTopics } from "./Pages/NotesTopics";
 import { SubjectTopics } from "./Pages/SubjectsTopic";
+import { SubjectVideo } from "./Pages/SubjectVideo";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/notes" element={<Notes/>}/>
         <Route path="/notes/:id" element={<NotesTopics/>}/>
         <Route path="/subjects/:id" element={<SubjectTopics/>}/>
+        <Route path="/subjects/:id/:id" element={<SubjectVideo/>}/>
       </Routes>
       </BrowserRouter>
     </div>
