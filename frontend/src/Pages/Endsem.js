@@ -1,13 +1,18 @@
+import { Link } from "react-router-dom";
 import { Bar } from "../components/Bar";
+import { useState } from "react";
+import { Modal } from "../components/Modal";
 
 const data = [
     {
         id: 1,
         title: "2024-25",
+        link:'https://www.stannescet.ac.in/cms/staff/qbank/CSE/Notes/CS8591-COMPUTER%20NETWORKS-1593855642-CS8591%20CN.pdf'
     },
     {
         id: 2,
         title: "2025-26",
+        link:'https://drive.google.com/file/d/1CGatGp2xUsVyuE7PaxVs6Bwsx4lJbCRP/preview?usp=drivesdk'
     },
     {
         id: 3,
@@ -44,14 +49,19 @@ const data = [
 ];
 
 export function Endsem(){
+const [isopen,setisopen] = useState(false);
+const[link,setlink] = useState('');
+
+
     return (
         <div className="text-white overflow-auto p-8 row-span-7 col-span-5">
             <div className="text-white font-semibold text-lg mb-4 ml-2">Operating Systems</div>
             {
                 data.map((obj)=>{
-                    return <Bar to={``} title={obj.title}/>
+                    return <Bar link={obj.link} setlink={setlink} title={obj.title} setisopen={setisopen}/>
                 })
             }
+            {isopen && <Modal link={link} setisopen={setisopen}/>}
         </div>
     )
 }
