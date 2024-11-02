@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Bar } from "../components/Bar";
+import { BarSubject } from "../components/BarSubject";
 
 
 const data = [
@@ -55,7 +56,7 @@ const {id} = useParams();
         <div className="mb-4 ml-2 text-[#D4D4D8]">Definition: Computer networks are systems that connect multiple computing devices to share resources and communicate, enabling information exchange between devices over local or wide areas.Types: Networks are categorized into types such as LAN (Local Area Network), WAN (Wide Area Network), MAN (Metropolitan Area Network), and PAN (Personal Area Network) based on their geographic scope and purpose.</div>
         {
             data.map((obj)=>{
-                return <Bar to={`/subjects/${id}/${obj.id}`} title={obj.title}/>
+                return <BarSubject to={`/subjects/${id}/${obj.id}`} title={obj.title}/>
             })
         }
     </div>

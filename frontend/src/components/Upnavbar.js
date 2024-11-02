@@ -12,9 +12,6 @@ export function Upnavbar(){
                 <option className="hover:bg-[#191919] cursor-pointer">Fourth Year</option>
             </select>
             </div>
-            <div className="text-white mr-7">
-                User
-            </div>
         </div>
     )
 }
