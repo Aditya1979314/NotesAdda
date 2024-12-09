@@ -50,6 +50,7 @@ export function SubjectTopics(){
 const {id} = useParams();
 
 
+
     return (
         <div className="text-white overflow-auto p-8 row-span-7 col-span-5">
         <div className="text-[#D4D4D8] font-bold text-3xl mb-4 ml-2">Computer Networks</div>

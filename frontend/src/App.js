@@ -9,6 +9,8 @@ import { Notes } from "./Pages/Notes";
 import { NotesTopics } from "./Pages/NotesTopics";
 import { SubjectTopics } from "./Pages/SubjectsTopic";
 import { SubjectVideo } from "./Pages/SubjectVideo";
+import { Otherroutes } from "./components/Otherroutes";
+
 
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
       <Upnavbar/>
       <Outlet/>
       <Routes>
+        <Route path="*" element={<Otherroutes/>}/>
         <Route path="/subjects" element={<Subject/>}></Route>
         <Route path="/unit" element={<Unitterm/>}/>
         <Route path="/midterm" element={<Midterm/>}/>

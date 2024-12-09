@@ -58,7 +58,7 @@ const data = [
 
 export function Subject(){
     return (
-        <div className="text-white row-span-7 col-span-5 overflow-auto p-8">
+        <div className="text-white row-span-7 col-span-5 overflow-auto p-8 ">
             <div className="grid grid-cols-3 gap-12">
               {
                 data.map((subject)=>{

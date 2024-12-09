@@ -1,12 +1,13 @@
 import { Collegelogo } from "./Collegelogo";
 import { Navbarlink } from "./Navbarlink";
-import {Subjectsvg} from '../assests/Subjectsvg'
+import {Subjectsvg} from '../assests/Subjectsvg';
 import { Linksvg } from "../assests/Linksvg";
 import { Notesvg } from "../assests/Notesvg";
 import { useLocation } from "react-router-dom";
 
 
 export function Navbar(){
+
 const location = useLocation();
 
 const isactive = (path)=> location.pathname === path;
