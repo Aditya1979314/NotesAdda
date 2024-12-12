@@ -1,5 +1,9 @@
+import { useParams } from "react-router-dom";
 import { Cardques } from "../components/Cardques";
 import { Videoyt } from "../components/Videoyt";
+import { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebaseconfig";
 
 const data = [
     { id: 1, title: "Explain linear regression with an example" },
@@ -16,18 +20,45 @@ const data = [
 
 
 export function SubjectVideo(){
+const [topic,settopic] = useState(null);
+const {subjectid,id} = useParams();
+
+useEffect(()=>{
+console.log(topic)
+},[topic])
+
+useEffect(()=>{
+async function fetchdata(){
+    const q = doc(db,'subjects',subjectid);
+    const docsnapshot = await getDoc(q);
+    const temp = docsnapshot.data().topics?.filter((obj)=>obj.id == id)
+    settopic(temp[0]);
+}
+
+fetchdata();
+
+return ()=>settopic(null)
+
+},[subjectid,id])
+
+if(topic === null){
+    return <>
+    <div className="text-white">Loading...</div>
+    </>
+}
+
     return (
-        <div className="text-white row-span-7 col-span-5 overflow-auto p-8">
+        <div className="text-white row-span-7 col-span-6 lg:col-span-5 overflow-auto p-8">
             <div className="flex flex-col items-center h-4/5">
-           <Videoyt/>
+           <Videoyt url={topic?.yturl}/>
             </div>
            <div className="text-white font-bold text-xl mt-8 ml-12">
             Questions 
            </div>
             <div className="p-12 grid grid-cols-2 gap-5">
                 {
-                    data.map((obj)=>{
-                        return <Cardques  title={obj.title} />
+                    topic.questions?.map((obj)=>{
+                        return <Cardques  title={obj.ques} />
                     })
                 }
             </div>

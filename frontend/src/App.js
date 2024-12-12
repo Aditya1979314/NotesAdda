@@ -10,14 +10,31 @@ import { NotesTopics } from "./Pages/NotesTopics";
 import { SubjectTopics } from "./Pages/SubjectsTopic";
 import { SubjectVideo } from "./Pages/SubjectVideo";
 import { Otherroutes } from "./components/Otherroutes";
+import { useEffect, useState } from "react";
+import { Hamburgericon } from "./components/Hamburgericon";
 
 
 
 function App() {
+const[navbaropen,setnavbaropen] = useState(false);
+const[screenwidth,setscreenwidth] = useState();
+
+useEffect(()=>{
+function resizehandler(){
+setscreenwidth(window.innerWidth);
+}
+
+window.addEventListener('resize',resizehandler);
+
+return ()=>window.removeEventListener('resize',resizehandler);
+
+},[])
+
   return (
     <div className="bg-[#0F0F0F] h-screen grid grid-cols-6 grid-rows-8 font-sans">
       <BrowserRouter>
-      <Navbar/>
+      <Hamburgericon setnavbaropen={setnavbaropen}/>
+      { (navbaropen || screenwidth >= 1024) && <Navbar navbaropen={navbaropen}/>}
       <Upnavbar/>
       <Outlet/>
       <Routes>
@@ -29,7 +46,7 @@ function App() {
         <Route path="/notes" element={<Notes/>}/>
         <Route path="/notes/:id" element={<NotesTopics/>}/>
         <Route path="/subjects/:id" element={<SubjectTopics/>}/>
-        <Route path="/subjects/:id/:id" element={<SubjectVideo/>}/>
+        <Route path="/subjects/:subjectid/:id" element={<SubjectVideo/>}/>
       </Routes>
       </BrowserRouter>
     </div>

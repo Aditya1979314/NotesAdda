@@ -18,9 +18,12 @@ export function Unitterm(){
             const q = query(collection(db,"pdflinks"),where("contentType","==","Unit test paper"))
             const querysnapshot = await getDocs(q);
             querysnapshot.forEach((doc)=>{
-                temparr.push(doc.data());
+                const obj = doc.data();
+                temparr.push(obj.subject);
             })
-            setdata(temparr);
+            const dataset = new Set(temparr);
+            const finaldata = Array.from(dataset);
+            setdata(finaldata);
         }
         fetchdata();
         
@@ -30,10 +33,10 @@ export function Unitterm(){
         },[])
 
     return (
-        <div className="text-white overflow-auto p-8 row-span-7 col-span-5">
+        <div className="text-white overflow-auto p-8 row-span-7 col-span-6 lg:col-span-5">
             {
             data.map((obj)=>{
-                return <Dropdown title={obj.subject} contentType={"Unit test paper"} setlink={setlink} setisopen={setisopen}/>
+                return <Dropdown title={obj} contentType={"Unit test paper"} setlink={setlink} setisopen={setisopen}/>
             })
            }
             {isopen && <Modal link={link} setisopen={setisopen}/>}

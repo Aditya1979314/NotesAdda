@@ -1,6 +1,9 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { Bar } from "../components/Bar";
 import { BarSubject } from "../components/BarSubject";
+import { useEffect, useState } from "react";
+import { collection, doc, getDoc, query, where } from "firebase/firestore";
+import { db } from "../firebaseconfig";
 
 
 const data = [
@@ -47,17 +50,28 @@ const data = [
 ];
 
 export function SubjectTopics(){
+const[topics,settopics] = useState([]);
 const {id} = useParams();
 
+useEffect(()=>{
+async function fetchdata(){
+    const q = doc(db,'subjects',id);
+    const docsnapshot = await getDoc(q);
+    settopics(docsnapshot.data().topics);
+}
+
+fetchdata();
+
+},[])
 
 
     return (
-        <div className="text-white overflow-auto p-8 row-span-7 col-span-5">
+        <div className="text-white overflow-auto p-8 row-span-7 col-span-6 lg:col-span-5">
         <div className="text-[#D4D4D8] font-bold text-3xl mb-4 ml-2">Computer Networks</div>
         <div className="mb-4 ml-2 text-[#D4D4D8]">Definition: Computer networks are systems that connect multiple computing devices to share resources and communicate, enabling information exchange between devices over local or wide areas.Types: Networks are categorized into types such as LAN (Local Area Network), WAN (Wide Area Network), MAN (Metropolitan Area Network), and PAN (Personal Area Network) based on their geographic scope and purpose.</div>
         {
-            data.map((obj)=>{
-                return <BarSubject to={`/subjects/${id}/${obj.id}`} title={obj.title}/>
+            topics.map((obj)=>{
+                return <BarSubject to={`/subjects/${id}/${obj.id}`} title={obj.topicname}/>
             })
         }
     </div>

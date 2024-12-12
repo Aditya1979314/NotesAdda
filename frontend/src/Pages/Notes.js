@@ -16,9 +16,12 @@ const [data,setdata] = useState([]);
             const docsnapshot = await getDocs(q);
             docsnapshot.forEach((doc)=>{
                 const obj = doc.data();
-                tempdata.push({...obj,id:doc.id});
+                tempdata.push(obj.subject);
             })
-            setdata(tempdata);
+            const dataset = new Set(tempdata);
+            const finaldata = Array.from(dataset);
+            setdata(finaldata);
+            console.log(finaldata);
         }catch(err){
             console.log("some error occured");
         }
@@ -32,11 +35,11 @@ const [data,setdata] = useState([]);
  },[])   
 
     return (
-        <div className="text-white row-span-7 col-span-5 overflow-auto p-8">
+        <div className="text-white row-span-7 col-span-6 lg:col-span-5 overflow-auto p-8">
         <div className="grid grid-cols-3 gap-12">
         {
                 data.map((obj)=>{
-                    return <Card to={`/notes/${obj.subject}`} title={obj.subject}/>
+                    return <Card to={`/notes/${obj}`} title={obj}/>
                 })
               }
         </div>
