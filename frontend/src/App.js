@@ -16,8 +16,12 @@ import { Hamburgericon } from "./components/Hamburgericon";
 
 
 function App() {
-const[navbaropen,setnavbaropen] = useState(false);
+const[navbaropen,setnavbaropen] = useState(true);
 const[screenwidth,setscreenwidth] = useState();
+
+useEffect(()=>{
+console.log(screenwidth)
+},[screenwidth])
 
 useEffect(()=>{
 function resizehandler(){
@@ -30,11 +34,24 @@ return ()=>window.removeEventListener('resize',resizehandler);
 
 },[])
 
+useEffect(()=>{
+  function navbarhandler(e){
+    if(navbaropen && !e.target.closest('#navbar') && !e.target.closest('#hamburger')){
+      setnavbaropen(false);
+    }
+  }
+
+  document.addEventListener('click',navbarhandler);
+
+  return ()=>document.removeEventListener('click',navbarhandler);
+  
+},[navbaropen])
+
   return (
     <div className="bg-[#0F0F0F] h-screen grid grid-cols-6 grid-rows-8 font-sans">
       <BrowserRouter>
-      <Hamburgericon setnavbaropen={setnavbaropen}/>
-      { (navbaropen || screenwidth >= 1024) && <Navbar navbaropen={navbaropen}/>}
+      <Hamburgericon id={'hamburger'} setnavbaropen={setnavbaropen}/>
+      { (navbaropen || screenwidth >= 1024) && <Navbar id={'navbar'} navbaropen={navbaropen}/>}
       <Upnavbar/>
       <Outlet/>
       <Routes>

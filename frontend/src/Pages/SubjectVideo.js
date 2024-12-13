@@ -48,14 +48,14 @@ if(topic === null){
 }
 
     return (
-        <div className="text-white row-span-7 col-span-6 lg:col-span-5 overflow-auto p-8">
-            <div className="flex flex-col items-center h-4/5">
+        <div className="text-white row-span-7 col-span-6 lg:col-span-5 overflow-auto lg:p-8 p-4">
+            <div className="flex flex-col items-center lg:h-4/5 h-2/5 ">
            <Videoyt url={topic?.yturl}/>
             </div>
            <div className="text-white font-bold text-xl mt-8 ml-12">
             Questions 
            </div>
-            <div className="p-12 grid grid-cols-2 gap-5">
+            <div className="p-12 lg:grid lg:grid-cols-2 gap-5 flex flex-col ">
                 {
                     topic.questions?.map((obj)=>{
                         return <Cardques  title={obj.ques} />

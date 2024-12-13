@@ -6,14 +6,14 @@ import { Notesvg } from "../assests/Notesvg";
 import { useLocation } from "react-router-dom";
 
 
-export function Navbar({navbaropen}){
+export function Navbar({navbaropen,id}){
 
 const location = useLocation();
 
 const isactive = (path)=> location.pathname === path;
 
     return (
-        <div className="absolute top-0 left-0 bottom-0 bg-[#000000] lg:static lg:bg-[#0F0F0F] row-span-8 grid grid-rows-8 border-r border-[#191919]">
+        <div id={id} className="absolute top-0 left-0 bottom-0 bg-[#000000] lg:static lg:bg-[#0F0F0F] row-span-8 grid grid-rows-8 border-r border-[#191919]">
             <Collegelogo/>
             <div className="flex flex-col justify-between row-start-3 row-span-4 p-4">
                 <Navbarlink to={'/subjects'} Logo={Subjectsvg} label={'Subjects'} isactive={isactive('/subjects')}/>

@@ -36,7 +36,7 @@ const [data,setdata] = useState([]);
 
     return (
         <div className="text-white row-span-7 col-span-6 lg:col-span-5 overflow-auto p-8">
-        <div className="grid grid-cols-3 gap-12">
+        <div className="lg:grid lg:grid-cols-3 lg:gap-12 md:grid md:grid-cols-2 md:gap-8 flex flex-col gap-3">
         {
                 data.map((obj)=>{
                     return <Card to={`/notes/${obj}`} title={obj}/>
