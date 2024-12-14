@@ -20,10 +20,6 @@ const[navbaropen,setnavbaropen] = useState(true);
 const[screenwidth,setscreenwidth] = useState();
 
 useEffect(()=>{
-console.log(screenwidth)
-},[screenwidth])
-
-useEffect(()=>{
 function resizehandler(){
 setscreenwidth(window.innerWidth);
 }
@@ -35,17 +31,19 @@ return ()=>window.removeEventListener('resize',resizehandler);
 },[])
 
 useEffect(()=>{
-  function navbarhandler(e){
-    if(navbaropen && !e.target.closest('#navbar') && !e.target.closest('#hamburger')){
-      setnavbaropen(false);
+    function navbarhandler(e){
+      if(navbaropen && !e.target.closest('#navbar') && !e.target.closest('#hamburger')){
+        setnavbaropen(false);
+      }
     }
-  }
 
-  document.addEventListener('click',navbarhandler);
+    if(screenwidth <= 1024){
+      document.addEventListener('click',navbarhandler);
+    }
 
   return ()=>document.removeEventListener('click',navbarhandler);
   
-},[navbaropen])
+},[navbaropen,screenwidth])
 
   return (
     <div className="bg-[#0F0F0F] h-screen grid grid-cols-6 grid-rows-8 font-sans">

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Downarrow } from "../assests/Downarrow";
 import { Bar } from "./Bar";
-import { collection, getDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebaseconfig";
 
 
@@ -20,7 +20,6 @@ export function Dropdown({title,contentType,setlink,setisopen}){
                 temparr.push(doc.data());
             })
             setdata(temparr);
-            console.log(temparr);
         }
 
         fetchdata();
@@ -28,7 +27,7 @@ export function Dropdown({title,contentType,setlink,setisopen}){
         return ()=>{
             setdata([]);
         }
-    },[])
+    },[contentType,title])
 
     return (
         <>
