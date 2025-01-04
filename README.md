@@ -10,4 +10,8 @@ This web application was developed to address the challenges faced by students i
 ![Screenshot (171)](https://github.com/user-attachments/assets/7d7b3519-8d51-4b83-8dd2-d1d4d6d4cfa4)
 ![Screenshot (172)](https://github.com/user-attachments/assets/4deaefb8-426b-4c33-9adf-a81a983af2be)
 
+# Tech stack used
+1. React
+2. Firebase
+
 
