@@ -2,7 +2,7 @@
 
 This web application was developed to address the challenges faced by students in accessing notes and exam papers across different colleges. The platform provides an organized and convenient way for students to access a variety of academic resources, including exam papers, unit test papers, mid-term papers, detailed notes, subject-specific lectures, and topic-wise questions. By centralizing these materials, the application aims to simplify learning and preparation for students, enhancing their academic experience.
 
-## Live link - (https://starlit-gumption-f9a137.netlify.app/)
+## Live link - (https://dypatilnotes.netlify.app/subjects)
 
 # Some images of the Application
 
